@@ -39,6 +39,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let settings4 = ReadingSettings()
         settings4.fontSize = 200
+        settings4.textColor = UIColor.white
+        settings4.backgroundColor = UIColor.darkGray
         settings4.horizontalMargin = 0
         settings4.verticalMargin = 0
         settings4.hyphenation = false
@@ -83,8 +85,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
             if let progress = self?.bookView.pageCounter?.contentSizeCache.progress {
                 self?.progressView.isHidden = progress == 1.0
                 self?.progressView.progress = Float(progress)
-                self?.slider.isHidden = progress < 1.0
-                self?.pageLabel.isHidden = progress < 1.0
+                
                 
                 if progress == 1.0 {
                     self?.slider.minimumValue = 1
@@ -95,6 +96,12 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                     } else {
                         self?.refreshSlider(for: NavigationPoint(document: documents[0], position: 0))
                     }
+                    
+                    self?.slider.isHidden = false
+                    self?.pageLabel.isHidden = false
+                } else {
+                    self?.slider.isHidden = true
+                    self?.pageLabel.isHidden = true
                 }
             }
             
@@ -112,6 +119,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBAction func settingsButtonAction(_ sender: UIButton) {
         let settings = self.settings[sender.tag]
         bookView.apply(settings: settings)
+        bookView.backgroundColor = settings.backgroundColor
     }
 }
 

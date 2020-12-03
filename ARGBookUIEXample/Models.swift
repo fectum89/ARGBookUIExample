@@ -109,12 +109,12 @@ class NavigationPoint: ARGBookNavigationPoint {
     
     var paragraphSpacing: Int64  = 10
     
-    var textColor = UIColor.red
+    var textColor = UIColor.black
     
     var highlightColor = UIColor.red
     
-    var backGroundColor = UIColor.red
-    
     var scrollType = ARGBookScrollType.horizontal
+    
+    var backgroundColor = UIColor.white
 }
 
