@@ -1,0 +1,6 @@
+[submodule "ARGContinuousScroll"]
+	path = ARGContinuousScroll
+	url = git@github.com:fectum89/ARGContinuousScroll.git
+[submodule "ARGBookUI"]
+	path = ARGBookUI
+	url = git@github.com:fectum89/ARGBookUI.git
