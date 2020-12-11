@@ -32,7 +32,7 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         let settings3 = ReadingSettings()
         settings3.fontSize = 120
         settings3.horizontalMargin = 0
-        settings3.verticalMargin = 5
+        settings3.verticalMargin = 4
         settings3.hyphenation = false
         settings3.alignment = .left
         settings3.twoColumnsLayout = true
