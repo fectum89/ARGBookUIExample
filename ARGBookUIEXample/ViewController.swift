@@ -11,10 +11,11 @@ import ARGBookUI
 class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var pageLabel: UILabel!
-    @IBOutlet weak var bookView: ARGBookUI.ARGBookView!
+    @IBOutlet weak var bookView: ARGBookView!
     @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var bookmarkButton: UIButton!
     
     var book: Book!
     
@@ -86,7 +87,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                 self?.progressView.isHidden = progress == 1.0
                 self?.progressView.progress = Float(progress)
                 
-                
                 if progress == 1.0 {
                     self?.slider.minimumValue = 1
                     self?.slider.maximumValue = Float(self?.bookView.pageCounter?.pageCount ?? 0)
@@ -104,7 +104,6 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
                     self?.pageLabel.isHidden = true
                 }
             }
-            
         }
     }
     
@@ -114,6 +113,25 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+    
+    @IBAction func bookmarkButtonAction(_ sender: Any) {
+        
+        print(pageLabel.frame)
+        
+        if let pages = bookView.visiblePages, let page = pages.first {
+            let document = page.startNavigationPoint.document as! Document
+            
+            if let bookmarks = page.bookmarks {
+                document.removeBookmarks(bookmarks)
+            } else {
+                document.addBookmark(Bookmark(navigationPoint: page.startNavigationPoint, name: "bookmark"))
+            }
+           
+            page.refresh()
+            
+            bookmarkButton.isSelected = page.bookmarks != nil
+        }
     }
     
     @IBAction func settingsButtonAction(_ sender: UIButton) {
@@ -129,6 +147,7 @@ extension ViewController: ARGBookNavigationDelegate {
         if let page = self.bookView.pageCounter?.page(for: point), page.globalPageNumber > 0 {
             self.slider.value = Float(page.globalPageNumber)
             pageLabel.text = "Page " + String(page.globalPageNumber) + " from " + String(bookView.pageCounter?.pageCount ?? 0)
+            bookmarkButton.isSelected = page.bookmarks != nil
         }
     }
     

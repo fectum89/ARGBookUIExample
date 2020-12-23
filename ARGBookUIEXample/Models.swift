@@ -21,6 +21,19 @@ class NavigationPoint: ARGBookNavigationPoint {
 
 }
 
+class Bookmark: ARGBookmark {
+    
+    var navigationPoint: ARGBookNavigationPoint
+    
+    var name: String
+    
+    init(navigationPoint: ARGBookNavigationPoint, name: String) {
+        self.navigationPoint = navigationPoint
+        self.name = name
+    }
+    
+}
+
 @objc class Document: NSObject, ARGBookDocument {
     
     var languageCode: String? = "en"
@@ -36,7 +49,9 @@ class NavigationPoint: ARGBookNavigationPoint {
     }
     
     var filePath: String
+    
     var book: ARGBook?
+    
     var hasFixedLayout: Bool = false
     
     var name: String {
@@ -48,6 +63,25 @@ class NavigationPoint: ARGBookNavigationPoint {
     @objc init(filePath: String) {
         self.filePath = Bundle.main.bundlePath + "/" + filePath
     }
+    
+}
+
+extension Document {
+    
+    func addBookmark(_ bookmark: ARGBookmark) {
+        if bookmarks == nil {
+            bookmarks = []
+        }
+        
+        bookmarks?.append(bookmark)
+    }
+    
+    func removeBookmarks(_ bookmarksToRemove: [ARGBookmark]) {
+        self.bookmarks?.removeAll { bookmark in
+            return bookmarksToRemove.contains { bookmark === $0 }
+        }
+    }
+    
 }
 
 @objc class Book: NSObject, ARGBook {
@@ -73,6 +107,7 @@ class NavigationPoint: ARGBookNavigationPoint {
         self.uid = "book1"
         self.documents = documents
         self.contentDirectoryPath = directory
+        
         if let savedDictionary = UserDefaults.standard.dictionary(forKey: "currentNavigationPoint"),
            let name = savedDictionary["name"] as? String,
            let progress = savedDictionary["progress"] as? CGFloat {

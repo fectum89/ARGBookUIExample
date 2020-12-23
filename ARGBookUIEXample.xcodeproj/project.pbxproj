@@ -17,8 +17,6 @@
 		5D2C8C2B253C60B60034D6CC /* moby-dick in Resources */ = {isa = PBXBuildFile; fileRef = 5D2C8C2A253C60B60034D6CC /* moby-dick */; };
 		5DC24AD32578A6A900BFEBE5 /* ARGBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC24AC62578A69600BFEBE5 /* ARGBookUI.framework */; };
 		5DC24AD42578A6A900BFEBE5 /* ARGBookUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC24AC62578A69600BFEBE5 /* ARGBookUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		5DC24AD62578A74D00BFEBE5 /* ARGContinuousScroll.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC24ACF2578A69D00BFEBE5 /* ARGContinuousScroll.framework */; };
-		5DC24AD72578A74D00BFEBE5 /* ARGContinuousScroll.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5DC24ACF2578A69D00BFEBE5 /* ARGContinuousScroll.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +58,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5DC24AD42578A6A900BFEBE5 /* ARGBookUI.framework in Embed Frameworks */,
-				5DC24AD72578A74D00BFEBE5 /* ARGContinuousScroll.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,7 +85,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DC24AD32578A6A900BFEBE5 /* ARGBookUI.framework in Frameworks */,
-				5DC24AD62578A74D00BFEBE5 /* ARGContinuousScroll.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
